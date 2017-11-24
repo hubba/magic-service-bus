@@ -1,0 +1,48 @@
+{
+  "name": "magic-service-bus",
+  "version": "1.0.0",
+  "description": "🐰 RabbitMQ Based Service Bus Magic",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/*.js",
+    "test:watch": "npm test -- --watch",
+    "test:junit": "./node_modules/.bin/mocha test/*.js --reporter mocha-junit-reporter",
+    "test:lint": "./node_modules/.bin/eslint .",
+    "test:debug": "./node_modules/.bin/mocha --inspect --debug-brk test/*.js",
+    "test:coverage": "./node_modules/.bin/nyc --reporter=html --reporter=text npm test",
+    "report:coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hubba/magic-service-bus.git"
+  },
+  "contributors": [
+    "Andrew Munro <amunro@hubba.com>",
+    "Edward Andrew Robinson <earobinson@hubba.com>",
+    "Julian Haldenby <jhaldenby@hubba.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "q": "^1.5.0",
+    "require-directory": "^2.1.1",
+    "uuid": "^3.1.0",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "eslint": "^4.2.0",
+    "mocha": "^3.4.2",
+    "mocha-junit-reporter": "^1.13.0",
+    "mock-stdin": "^0.3.1",
+    "nyc": "^11.3.0",
+    "sinon": "^2.3.8"
+  },
+  "nyc": {
+    "exclude": "test/**/*"
+  }
+}

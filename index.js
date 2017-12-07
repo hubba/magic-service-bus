@@ -33,6 +33,10 @@ function fromDir(startPath, filter, callback) {
 function onMessage(eventName, handler) {
   assert.ok(connection, 'Connection not created. Please make sure you have initialized the worker');
 
+  if(handler.name === null) {
+    connection.logger.warn('Anonymous functions have been deprecated and will no longer be supported in version 2.0.0');
+  }
+
   connection.bindEvent(eventName, handler);
 }
 

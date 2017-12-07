@@ -19,6 +19,11 @@ npm install magic-service-bus --save
  - Once and only once delivery of messages between services
  - Make working with RabbitMQ more magical
 
+## Contributing
+
+Please read through our [contributing guidelines](CONTRIBUTING.md). Included are directions
+for opening issues, coding standards, and notes on development.
+
 ***
 
 Built with ❤️ at [Hubba](https://www.hubba.com?utm_campaign=hubba_oss).

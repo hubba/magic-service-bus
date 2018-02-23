@@ -66,7 +66,7 @@ describe('Integration tests', function() {
         assert.equal(queueExists.consumerCount, 0, 'We should have disconnected the consumer');
       });
     });
-    
+
     it('Should send a lot of messages on the queue', function() {
       const testScope = this;
       const { bus } = testScope;

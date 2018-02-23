@@ -45,7 +45,7 @@ describe('Integration tests', function() {
       });
     });
 
-    it.only('Should send a message on the queue', function() {
+    it('Should send a message on the queue', function() {
       const testScope = this;
       const {bus} = testScope;
       let newChannel = null;
@@ -63,6 +63,33 @@ describe('Integration tests', function() {
       }).then(function(queueExists) {
         assert.ok(queueExists.queue, 'The queue must have been declared.');
         assert.equal(queueExists.messageCount, 1, 'The queue must have one message.');
+        assert.equal(queueExists.consumerCount, 0, 'We should have disconnected the consumer');
+      });
+    });
+    
+    it('Should send a lot of messages on the queue', function() {
+      const testScope = this;
+      const { bus } = testScope;
+      let newChannel = null;
+
+      return bus.disconnect().then(function() {
+        return Promise.delay(10);
+      }).then(function() {
+        return bus.init();
+      }).then(function(channel) {
+        newChannel = channel;
+        const promiseArr = [];
+
+        for (let i = 0; i < 100; i++) {
+          promiseArr.push(bus.emit(testScope.queueName, { poop: `test ${i}`}));
+        }
+
+        return Promise.all(promiseArr);
+      }).then(function() {
+        return newChannel.checkQueue(bus.generateQueueName(testScope.queueName));
+      }).then(function(queueExists) {
+        assert.ok(queueExists.queue, 'The queue must have been declared.');
+        assert.equal(queueExists.messageCount, 100, 'The queue must have one message.');
         assert.equal(queueExists.consumerCount, 0, 'We should have disconnected the consumer');
       });
     });

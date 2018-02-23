@@ -10,7 +10,10 @@ cache:
     - node_modules
 notifications:
   email: false
+services:
+  - rabbitmq
 script:
   - npm run test:lint
   - npm run test:coverage
+  - npm run test:integration
   - npm run report:coverage

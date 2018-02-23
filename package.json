@@ -12,6 +12,7 @@
     "test:watch": "npm test -- --watch",
     "test:junit": "./node_modules/.bin/mocha test/*.js --reporter mocha-junit-reporter",
     "test:lint": "./node_modules/.bin/eslint .",
+    "test:integration": "./node_modules/.bin/mocha integration/integration-test.js",
     "test:debug": "./node_modules/.bin/mocha --inspect --debug-brk test/*.js",
     "test:coverage": "./node_modules/.bin/nyc --reporter=html --reporter=text npm test",
     "report:coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"

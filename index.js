@@ -42,7 +42,7 @@ function onMessage(eventName, handler) {
 
 Object.assign(module.exports, {
   emit(message, callback) {
-    assert.ok(connection, 'Connection not created. Please make sure you have initialized the worker');
+    assert.ok(connection, 'Connection not created. Please make sure you have initialized the emitter');
     assert.ok(message, 'must have a non-null message');
     assert.ok(message.event, 'You must have a message name');
 

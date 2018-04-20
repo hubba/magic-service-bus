@@ -205,7 +205,7 @@ describe('Message Bus', function() {
       it('should not have called createChannel', function() {
         const testScope = this;
 
-        assert(!testScope.connection.createChannel.called, 'Should not have called regular createChannel');
+        assert(testScope.connection.createConfirmChannel.called, 'Should have called regular createChannel');
       });
 
       it('should call assertExchange', function() {

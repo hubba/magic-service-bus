@@ -56,6 +56,26 @@ describe('Deadletter processors', function() {
     });
   });
 
+  describe('Re-Enqueue by Name Processor', function() {
+
+    it('should return with a promise containing requeue all messages action when the event name matches', function() {
+      const event = this.messageContent.event;
+
+      return DeadLetterProcessors.reenqueueByName(event, this.message).then(function(result) {
+        assert.equal(result, DeadletterActions.REENQUEUE_MESSAGE);
+      });
+    });
+
+    it('should reject promise when the event name doesn\'t match', function() {
+      return DeadLetterProcessors.reenqueueByName('anyOtherEvent', this.message).then(function() {
+        return Q.reject(new Error('Should have failed'));
+      }, function() {
+        return Q.resolve();
+      });
+    });
+
+  });
+
   describe('StdIn Processor', function() {
 
     it('when we respond with "1" we should reenqueue', function() {

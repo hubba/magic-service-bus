@@ -1,6 +1,6 @@
 {
   "name": "magic-service-bus",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "🐰 RabbitMQ Based Service Bus Magic",
   "main": "index.js",
   "directories": {

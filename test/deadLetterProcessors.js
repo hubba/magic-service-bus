@@ -45,7 +45,6 @@ describe('Deadletter processors', function() {
     });
   });
 
-  // eslint-disable-next-line
   describe('Delete by Name Processor', function() {
 
     it('should return with a promise containing delete messages action when the event name matches', function() {

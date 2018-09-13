@@ -45,6 +45,26 @@ describe('Deadletter processors', function() {
     });
   });
 
+  describe('Delete by Name Processor', function() {
+
+    it('should return with a promise containing delete messages action when the event name matches', function() {
+      const event = this.messageContent.event;
+
+      return DeadLetterProcessors.deleteByName(event, this.message).then(function(result) {
+        assert.equal(result, DeadletterActions.DELETE_MESSAGE);
+      });
+    });
+
+    it('should reject promise when the event name doesn\'t match', function() {
+      return DeadLetterProcessors.deleteByName('anyOtherEvent', this.message).then(function() {
+        return Q.reject(new Error('Should have failed'));
+      }, function() {
+        return Q.resolve();
+      });
+    });
+
+  });
+
   describe('Re-Enqueue all Processor', function() {
 
     it('should always return with a promise containing requeue all messages action', function() {
